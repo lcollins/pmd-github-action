@@ -4,11 +4,13 @@ on: # rebuild any PRs and main branch changes
     branches:
       - main
       - master
+      - release/*
       - releases/*
   pull_request:
     branches:
       - main
       - master
+      - release/*
       - releases/*
 
 jobs:
