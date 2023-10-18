@@ -15,6 +15,13 @@ on: # rebuild any PRs and main branch changes
 
 permissions:
   security-events: write
+  actions: write
+  checks: write
+  deployments: write
+  id-token: write
+  discussions: write
+  pull-requests: write
+  statuses: write
 
 jobs:
   build: # make sure build/ci work properly
