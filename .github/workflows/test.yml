@@ -3,10 +3,12 @@ on: # rebuild any PRs and main branch changes
   push:
     branches:
       - main
+      - master
       - releases/*
   pull_request:
     branches:
       - main
+      - master
       - releases/*
 
 jobs:
