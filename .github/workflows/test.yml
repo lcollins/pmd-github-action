@@ -13,6 +13,9 @@ on: # rebuild any PRs and main branch changes
       - release/*
       - releases/*
 
+permissions:
+  security-events: write
+
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
