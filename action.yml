@@ -1,5 +1,5 @@
-name: 'Push PMD report'
-description: 'Push PMD Code Analysis report'
+name: 'Publish PMD Code Report'
+description: 'Push PMD Code Analysis report (adapted from jwgmeligmeyling/pmd-github-action)'
 author: 'Luke Collins'
 inputs:
   path:
