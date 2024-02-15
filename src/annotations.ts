@@ -38,21 +38,18 @@ export function annotationsForPath(resultFile: string): Annotation[] {
     fs.readFileSync(resultFile, 'UTF-8' as BufferEncoding)
   )
 
-  return chain(
-    file => {
-      return map(violation => {
-        const annotation: Annotation = {
-          annotation_level: getWarningLevel(violation.priority),
-          path: path.relative(root, file.name),
-          start_line: Number(violation.beginline || 1),
-          end_line: Number(violation.endline || violation.beginline || 1),
-          title: `${violation.ruleset} ${violation.rule}`,
-          message: decode(violation['#text'])
-        }
+  return chain(file => {
+    return map(violation => {
+      const annotation: Annotation = {
+        annotation_level: getWarningLevel(violation.priority),
+        path: path.relative(root, file.name),
+        start_line: Number(violation.beginline || 1),
+        end_line: Number(violation.endline || violation.beginline || 1),
+        title: `${violation.ruleset} ${violation.rule}`,
+        message: decode(violation['#text'])
+      }
 
-        return annotation
-      }, asArray(file.violation))
-    },
-    asArray<File>(result.pmd?.file)
-  )
+      return annotation
+    }, asArray(file.violation))
+  }, asArray<File>(result.pmd?.file))
 }
