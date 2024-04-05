@@ -28,6 +28,9 @@ Optional. Title for the check run to create. Defaults to `PMD Source Code Analyz
 ### `token`
 Optional. GitHub API access token. Defaults to `${{ github.token }}`, which is set by `actions/checkout@v2` minimally.
 
+### `fail-on-violation`
+Optional. Whether to fail the check if any violations are found. Defaults to `false`.
+
 ## Example usage
 
 ```yaml
