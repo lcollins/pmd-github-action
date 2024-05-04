@@ -13,7 +13,9 @@ async function run(): Promise<void> {
     const path = core.getInput(Inputs.Path, {required: true})
     const name = core.getInput(Inputs.Name)
     const title = core.getInput(Inputs.Title)
-    const failOnViolations = core.getBooleanInput(Inputs.FailOnViolation)
+    const failOnViolations = core.getBooleanInput(Inputs.FailOnViolation, {
+      required: false
+    })
 
     const searchResult = await findResults(path)
     if (searchResult.filesToUpload.length === 0) {
