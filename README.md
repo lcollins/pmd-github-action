@@ -55,7 +55,7 @@ jobs:
           ${{ runner.os }}-maven-
     - name: Build with Maven
       run: mvn -B verify pmd:pmd
-    - uses: lcollins/pmd-github-action@v2.0.0
+    - uses: lcollins/pmd-github-action@v3.0.0
       with:
         path: '**/pmd.xml'
 ```
