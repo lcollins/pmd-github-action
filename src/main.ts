@@ -13,7 +13,9 @@ async function run(): Promise<void> {
     const path = core.getInput(Inputs.Path, {required: true})
     const name = core.getInput(Inputs.Name)
     const title = core.getInput(Inputs.Title)
-    const failOnViolations = core.getBooleanInput(Inputs.FailOnViolation)
+    const failOnViolations = core.getBooleanInput(Inputs.FailOnViolation, {
+      required: false
+    })
 
     const searchResult = await findResults(path)
     if (searchResult.filesToUpload.length === 0) {
@@ -42,7 +44,13 @@ async function run(): Promise<void> {
       core.debug(`Created ${groupedAnnotations.length} buckets`)
 
       for (const annotationSet of groupedAnnotations) {
-        await createCheck(name, title, annotationSet, annotations.length, failOnViolations)
+        await createCheck(
+          name,
+          title,
+          annotationSet,
+          annotations.length,
+          failOnViolations
+        )
       }
     }
   } catch (error) {
@@ -80,7 +88,12 @@ async function createCheck(
       head_sha: sha,
       name,
       status: 'completed' as const,
-      conclusion: numErrors === 0 ? ('success' as const) : failOnViolations ? ('failure' as const) : ('neutral' as const),
+      conclusion:
+        numErrors === 0
+          ? ('success' as const)
+          : failOnViolations
+            ? ('failure' as const)
+            : ('neutral' as const),
       output: {
         title,
         summary: `${numErrors} violation(s) found`,
@@ -96,7 +109,12 @@ async function createCheck(
       ...context.repo,
       check_run_id,
       status: 'completed' as const,
-      conclusion: numErrors === 0 ? ('success' as const) : failOnViolations ? ('failure' as const) : ('neutral' as const),
+      conclusion:
+        numErrors === 0
+          ? ('success' as const)
+          : failOnViolations
+            ? ('failure' as const)
+            : ('neutral' as const),
       output: {
         title,
         summary: `${numErrors} violation(s) found`,
