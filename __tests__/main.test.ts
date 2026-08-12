@@ -3,6 +3,16 @@ import fs from 'fs'
 import * as path from 'path'
 import {annotationsForPath} from '../src/annotations'
 
+jest.mock(
+  '@actions/core',
+  () => ({
+    warning: jest.fn(),
+    info: jest.fn(),
+    debug: jest.fn()
+  }),
+  {virtual: true}
+)
+
 beforeAll(() => {
   jest.spyOn(fs, 'existsSync').mockReturnValue(true)
   process.env['GITHUB_WORKSPACE'] = __dirname
