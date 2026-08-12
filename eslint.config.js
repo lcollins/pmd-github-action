@@ -64,7 +64,6 @@ module.exports = [
       '@typescript-eslint/no-unnecessary-qualifier': 'error',
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/no-useless-constructor': 'error',
-      '@typescript-eslint/no-var-requires': 'error',
       '@typescript-eslint/prefer-for-of': 'warn',
       '@typescript-eslint/prefer-function-type': 'warn',
       '@typescript-eslint/prefer-includes': 'error',
@@ -80,7 +79,7 @@ module.exports = [
     }
   },
   {
-    files: ['src/**/*.ts', '__tests__/**/*.ts'],
+    files: ['__tests__/**/*.ts'],
     plugins: {jest},
     languageOptions: {
       globals: jest.environments.globals.globals
